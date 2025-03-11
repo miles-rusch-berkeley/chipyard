@@ -138,7 +138,7 @@
 	url = https://github.com/ucb-bar/compress-acc.git
 [submodule "generators/saturn"]
 	path = generators/saturn
-	url = https://github.com/ucb-bar/saturn-vectors.git
+	url = git@github.com:miles-rusch-berkeley/saturn-vectors.git
 [submodule "software/firesim-paper-workloads"]
 	path = software/firesim-paper-workloads
 	url = https://github.com/firesim/firesim-paper-workloads.git
@@ -160,3 +160,6 @@
 [submodule "generators/radiance"]
 	path = generators/radiance
 	url = https://github.com/ucb-bar/radiance.git
+[submodule "vlsi/hammer-intech-plugin"]
+	path = vlsi/hammer-intech-plugin
+	url = git@bwrcrepo.eecs.berkeley.edu:intech22/hammer-intech22-plugin

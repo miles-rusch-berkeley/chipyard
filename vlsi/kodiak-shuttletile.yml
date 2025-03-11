@@ -1,0 +1,79 @@
+###########################################
+# Constraints
+###########################################
+vlsi.inputs.hierarchical:
+  constraints_meta: append
+  constraints:
+    - ShuttleTile:
+      - synthesis.inputs.retime_modules: ["OuterProductPipe*", "SegmentedMultiplyPipe*", "ElementwiseMultiplyPipe*", "FPUFMA*", "IntToFP*", "FPToFP*", "TandemFMAPipe*"]
+      - vlsi.inputs.default_output_load: "20 fF"
+      - vlsi.inputs.placement_constraints:
+        ## Margins are only useful for toplevel
+        ## Place all SRAMs and ShuttleTiles
+        - {path: ShuttleTile, type: toplevel, x: 0, y: 0, width: 1200, height: 800, margins: {left: 0, right: 0, top: 0, bottom: 0}}
+        - {path: ShuttleTile/frontend/icache/data_arrays_0/data_arrays_0_ext/mem_0_0, x: 1148.536, y: 352.53,   type: hardmacro, top_layer: m4}
+        - {path: ShuttleTile/frontend/icache/data_arrays_0/data_arrays_0_ext/mem_0_1, x: 1097.084, y: 352.53,   type: hardmacro, top_layer: m4}
+        - {path: ShuttleTile/frontend/icache/tag_array/tag_array_ext/mem_0_0,         x: 1045.632, y: 381.69,   type: hardmacro, top_layer: m4}
+        - {path: ShuttleTile/dcache/datas_0/array_0/array_0_ext/mem_0_0,              x: 1148.536, y: 682.47,   type: hardmacro, top_layer: m4}
+        - {path: ShuttleTile/dcache/datas_0/array_0/array_0_ext/mem_0_1,              x: 1097.084, y: 682.47,   type: hardmacro, top_layer: m4}
+        - {path: ShuttleTile/dcache/datas_1/array_0/array_0_ext/mem_0_0,              x: 1045.632, y: 682.47,   type: hardmacro, top_layer: m4}
+        - {path: ShuttleTile/dcache/datas_1/array_0/array_0_ext/mem_0_1,              x: 994.18,   y: 682.47,   type: hardmacro, top_layer: m4}
+        - {path: ShuttleTile/dcache/datas_2/array_0/array_0_ext/mem_0_0,              x: 1148.536, y: 564.93,   type: hardmacro, top_layer: m4}
+        - {path: ShuttleTile/dcache/datas_2/array_0/array_0_ext/mem_0_1,              x: 1097.084, y: 564.93,   type: hardmacro, top_layer: m4}
+        - {path: ShuttleTile/dcache/datas_3/array_0/array_0_ext/mem_0_0,              x: 1045.632, y: 564.93,   type: hardmacro, top_layer: m4}
+        - {path: ShuttleTile/dcache/datas_3/array_0/array_0_ext/mem_0_1,              x: 994.18,   y: 564.93,   type: hardmacro, top_layer: m4}
+        - {path: ShuttleTile/dcache/meta/arrays_0/tag_array/tag_array_0_ext/mem_0_0,  x: 1148.536, y: 470.07,   type: hardmacro, top_layer: m4}
+        - {path: ShuttleTile/dcache/meta/arrays_1/tag_array/tag_array_0_ext/mem_0_0,  x: 1097.084, y: 470.07,   type: hardmacro, top_layer: m4}
+        - {path: ShuttleTile/dcache/meta/arrays_2/tag_array/tag_array_0_ext/mem_0_0,  x: 1045.632, y: 470.07,   type: hardmacro, top_layer: m4}
+        - {path: ShuttleTile/dcache/meta/arrays_3/tag_array/tag_array_0_ext/mem_0_0,  x: 994.18,   y: 470.07,   type: hardmacro, top_layer: m4}
+        - {path: ShuttleTile/tcm_1/Core0TCMbank0/Core0TCMbank0_ext/mem_0_0,           x: 0.0,      y: 520.0255, type: hardmacro, top_layer: m4}
+        - {path: ShuttleTile/tcm_1/Core0TCMbank0/Core0TCMbank0_ext/mem_0_1,           x: 247.148,  y: 520.0255, type: hardmacro, top_layer: m4}
+        - {path: ShuttleTile/tcm_1/Core0TCMbank0/Core0TCMbank0_ext/mem_1_0,           x: 247.148,  y: 284.9455, type: hardmacro, top_layer: m4}
+        - {path: ShuttleTile/tcm_1/Core0TCMbank0/Core0TCMbank0_ext/mem_1_1,           x: 0.0,      y: 284.9455, type: hardmacro, top_layer: m4}
+        - {path: ShuttleTile/tcm/Core0TCMbank0/Core0TCMbank0_ext/mem_0_0,             x: 0.0,      y: 402.4855, type: hardmacro, top_layer: m4}
+        - {path: ShuttleTile/tcm/Core0TCMbank0/Core0TCMbank0_ext/mem_0_1,             x: 247.148,  y: 402.4855, type: hardmacro, top_layer: m4}
+        - {path: ShuttleTile/tcm/Core0TCMbank0/Core0TCMbank0_ext/mem_1_0,             x: 247.148,  y: 167.4055, type: hardmacro, top_layer: m4}
+        - {path: ShuttleTile/tcm/Core0TCMbank0/Core0TCMbank0_ext/mem_1_1,             x: 0.0,      y: 167.4055, type: hardmacro, top_layer: m4}
+        - {path: ShuttleTile/ptw/l2_tlb_ram_0/l2_tlb_ram_0_ext/mem_0_0,               x: 942.728,  y: 708.39,   type: hardmacro, top_layer: m4}
+        - {path: ShuttleTile_4/SRAMOBS0, x: 630.20 , y: 699.00, width: 0.6, height: 115.00, type: obstruction, obs_types: ["power"], layers: [m5]}
+        - {path: ShuttleTile_4/SRAMOBS1, x: 731.00 , y: 463.70, width: 0.6, height: 233.30, type: obstruction, obs_types: ["power"], layers: [m5]}
+        - {path: ShuttleTile_4/SRAMOBS2, x: 794.00 , y: 698.30, width: 0.6, height: 299.80, type: obstruction, obs_types: ["power"], layers: [m5]}
+        ## define OP cell instances as hierarchical blocks
+        - {path: ShuttleTile/vector_unit/vu/vxufp/fus_5, x: 0, y: 410, width: 800, height: 660, type: hierarchical, master: "OuterProductPipe", top_layer: m4}
+      - vlsi.inputs.pin_mode: generated
+      - vlsi.inputs.pin.assignments: [{pins: "*", layers: ["m5", "m7"], side: "top"}]
+      - vlsi.inputs.clocks:
+        - {name: "clock", period: "0.9ns", uncertainty: "0.05ns"}
+      - par.generate_power_straps_options.by_tracks.strap_layers: [m3, m4, m5, m6, m7, m8]
+      - par.generate_power_straps_options.by_tracks.pin_layers: [m8]
+      - par.generate_power_straps_options.by_tracks.track_start_m5: 1
+      - vlsi.inputs.custom_sdc_constraints: [
+        "set_clock_uncertainty -setup 0.08 [get_clocks clock]",
+        "set_clock_uncertainty -hold 0.04 [get_clocks clock]"
+      ]
+      - vlsi.inputs.delays: [
+        { name: "reset"                   , direction: "input",  clock: "clock", delay: "350ps" },
+        { name: "auto_buffer_in_a_ready"  , direction: "output" , clock: "clock", delay: "300ps" },
+        { name: "auto_buffer_in_a_valid"  , direction: "input" , clock: "clock", delay: "300ps" },
+        { name: "auto_buffer_in_a_bits_*" , direction: "input" , clock: "clock", delay: "300ps" },
+        { name: "auto_buffer_in_d_ready"  , direction: "input" , clock: "clock", delay: "300ps" },
+        { name: "auto_buffer_in_d_valid"  , direction: "output" , clock: "clock", delay: "300ps" },
+        { name: "auto_buffer_in_d_bits_*" , direction: "output" , clock: "clock", delay: "300ps" },
+        { name: "auto_buffer_out_a_valid" , direction: "output", clock: "clock", delay: "300ps" },
+        { name: "auto_buffer_out_a_ready" , direction: "input" , clock: "clock", delay: "300ps" },
+        { name: "auto_buffer_out_a_bits_*", direction: "output", clock: "clock", delay: "300ps" },
+        { name: "auto_buffer_out_b_valid" , direction: "input" , clock: "clock", delay: "300ps" },
+        { name: "auto_buffer_out_b_bits_*", direction: "input" , clock: "clock", delay: "300ps" },
+        { name: "auto_buffer_out_b_ready" , direction: "output", clock: "clock", delay: "300ps" },
+        { name: "auto_buffer_out_c_valid" , direction: "output", clock: "clock", delay: "300ps" },
+        { name: "auto_buffer_out_c_ready" , direction: "input" , clock: "clock", delay: "300ps" },
+        { name: "auto_buffer_out_c_bits_*", direction: "output", clock: "clock", delay: "1ns" },
+        { name: "auto_buffer_out_d_valid" , direction: "input" , clock: "clock", delay: "300ps" },
+        { name: "auto_buffer_out_d_bits_*", direction: "input" , clock: "clock", delay: "300ps" },
+        { name: "auto_buffer_out_d_ready" , direction: "output", clock: "clock", delay: "300ps" },
+        { name: "auto_buffer_out_e_valid" , direction: "output", clock: "clock", delay: "300ps" },
+        { name: "auto_buffer_out_e_ready" , direction: "input" , clock: "clock", delay: "300ps" },
+        { name: "auto_buffer_out_e_bits_*", direction: "output", clock: "clock", delay: "300ps" },
+        { name: "auto_int_*"              , direction: "input" , clock: "clock", delay: "300ps" },
+        { name: "auto_hartid_in"          , direction: "input" , clock: "clock", delay: "300ps" },
+      ]

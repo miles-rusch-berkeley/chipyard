@@ -1,0 +1,69 @@
+# Technology Setup
+vlsi.core.technology: "hammer.intech22"
+
+# technology files installation directory
+technology.intech22.install_dir: "/tools/intech22"
+
+synthesis.genus.version: "231"
+
+vlsi.core.sram_generator_tool: hammer.intech22.sram_compiler
+
+# Tool options. Replace with your tool plugin of choice.
+vlsi.core.build_system: make
+# Genus options
+vlsi.core.synthesis_tool: "hammer.synthesis.genus"
+synthesis.genus.version: "231"
+# Innovus options
+vlsi.core.par_tool: "hammer.par.innovus"
+par.innovus.version: "231"
+par.innovus.design_flow_effort: "standard"
+par.inputs.gds_merge: true
+# Calibre options
+vlsi.core.drc_tool: "hammer.drc.calibre"
+drc.calibre.version: "2022.2_24.16"
+vlsi.core.lvs_tool: "hammer.lvs.calibre"
+lvs.calibre.version: "2022.2_24.16"
+# VCS options
+vlsi.core.sim_tool: "hammer.sim.vcs"
+sim.vcs.version: "S-2021.09-SP1-1"
+# Voltus options
+vlsi.core.power_tool: "hammer.power.voltus"
+power.joules.version: "231"
+power.voltus.version: "231"
+# NOTE (about VCS+Voltus versions): if using FSDB, the VCS version should be approx 2 years older than the Voltus version for compatibility
+
+# General Hammer Inputs Related to the Design and Build System
+# Generate Make include to aid in flow
+vlsi.core.build_system: make
+vlsi.core.max_threads: 12
+
+# Hammer will auto-generate a CPF for simple power designs; see hammer/src/hammer-vlsi/defaults.yml for more info
+vlsi.inputs.power_spec_mode: "auto"
+vlsi.inputs.power_spec_type: "cpf"
+
+# Specify pin properties
+# Default pin placement can be set by the tool
+# Default pin layer assignments can be found in some tech plug-ins
+vlsi.inputs.pin_mode: generated
+vlsi.inputs.pin.generate_mode: semi_auto
+
+# Specify the floorplan
+# Default floor plan can be set by the tool
+# The path name should match the VLSI_TOP makefile parameter if it is set
+par.innovus.floorplan_mode: "auto"
+vlsi.inputs.placement_constraints:
+  - path: "RocketTile"
+    type: toplevel
+    x: 0
+    y: 0
+    width: 800
+    height: 800
+    margins:
+      left: 0
+      right: 0
+      top: 0
+      bottom: 0
+
+#Specify a list of modules that should be retimed automatically
+synthesis.inputs.retime_modules: ["OuterProductPipe*","SegmentedMultiplyPipe*","ElementwiseMultiplyPipe*","TandemFMAPipe*","FPUFMAPipe*"] # List of modules to be retimed
+#
