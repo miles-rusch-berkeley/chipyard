@@ -30,10 +30,14 @@ VCS_CXXFLAGS = $(SIM_CXXFLAGS)
 VCS_LDFLAGS = $(SIM_LDFLAGS)
 
 # vcs requires LDFLAGS to not include library names (i.e. -l needs to be separate)
+# -Xcflags is appended to VCS's internal gen_c compile flags (e.g. rmapats.c). Newer
+# GCC (14+) promotes implicit-function-declaration from a warning to a hard error,
+# which breaks compilation of VCS's own generated glue code; demote it back.
 VCS_CC_OPTS = \
 	-CFLAGS "$(VCS_CXXFLAGS)" \
 	-LDFLAGS "$(filter-out -l%,$(VCS_LDFLAGS))" \
-	$(filter -l%,$(VCS_LDFLAGS))
+	$(filter -l%,$(VCS_LDFLAGS)) \
+	-Xcflags=-Wno-error=implicit-function-declaration
 
 VCS_NONCC_OPTS = \
 	-notice \
